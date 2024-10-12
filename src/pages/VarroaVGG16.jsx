@@ -5,6 +5,7 @@ import ImageDisplay from "../components/ImageDisplayOther";
 import UploadButton from "../components/UploadButton";
 import InferenceButton from "../components/InferenceButton";
 import Header from "../components/Header";
+import ModelSelect from "../components/ModelSelect";
 
 const VarroaVGG16 = () => {
   // State for base64 image
@@ -40,7 +41,7 @@ const VarroaVGG16 = () => {
 
   // Function to send image to API
   const sendImageToAPI = async () => {
-    const url = "";
+    const url = "https://cors-anywhere.herokuapp.com/https://vgg16-breakage-detection-app-725ac3f9988e.herokuapp.com/predict";
     const formData = new FormData();
     formData.append("file", base64Image); // Use base64Image directly
 
@@ -84,7 +85,11 @@ const VarroaVGG16 = () => {
           <UploadButton onChange={handleFileChange} theme={theme} />
         </div>
 
-        <div className="order-1 mb-[48px]">
+        <div className="order-2 mb-[48px]">
+          <ModelSelect onClick={ModelSelect} theme={theme} />
+        </div>
+
+        <div className="order-3 mb-[48px]">
           <InferenceButton onClick={sendImageToAPI} theme={theme} />
         </div>
 

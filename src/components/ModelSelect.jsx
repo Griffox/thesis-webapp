@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const ModelSelect = ({ onChange, theme }) => {
-  // Effect to handle applying the theme class to the document
+const ModelSelect = ({ theme }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    console.log("Theme changed:", theme);
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -11,19 +12,25 @@ const ModelSelect = ({ onChange, theme }) => {
     }
   }, [theme]);
 
+  const handleModelChange = (e) => {
+    const selectedModel = e.target.value;
+    navigate(`/${selectedModel}`);
+  };
+
   return (
     <div className="flex flex-col">
-      <h1 className="hidden lg:block font-bold text-[#a17202] mb-2">
-        Select Model
-      </h1>
+      <h1 className="hidden lg:block font-bold text-[#a17202] mb-2">Select Model</h1>
       <select
         className="w-[215px] h-[56px] bg-customBackground dark:bg-customLightBackground border border-customBtn dark:border-customLightBorder shadow-customShadow dark:shadow-customLightShadow rounded-2xl text-base text-ebony transition"
-        onChange={onChange}
+        onChange={handleModelChange}
       >
-        <option value="cv1">Computer Vision Model 1</option>
-        <option value="cv2">Computer Vision Model 2</option>
-        <option value="cv3">Computer Vision Model 3</option>
-        {/* Add more options as needed */}
+        <option value="yolov7">YOLOv7</option>
+        <option value="yolov8">YOLOv8</option>
+        <option value="yolov9">YOLOv9</option>
+        <option value="yolov10">YOLOv10</option>
+        <option value="inceptionv3">InceptionV3</option>
+        <option value="resnet50">ResNet50</option>
+        <option value="vgg16">VGG16</option>
       </select>
     </div>
   );

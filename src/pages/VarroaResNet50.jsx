@@ -5,6 +5,7 @@ import ImageDisplay from "../components/ImageDisplayOther";
 import UploadButton from "../components/UploadButton";
 import InferenceButton from "../components/InferenceButton";
 import Header from "../components/Header";
+import ModelSelect from "../components/ModelSelect";
 
 const VarroaResNet50 = () => {
   // State for base64 image
@@ -40,7 +41,7 @@ const VarroaResNet50 = () => {
 
   // Function to send image to API
   const sendImageToAPI = async () => {
-    const url = "";
+    const url = "https://cors-anywhere.herokuapp.com/https://resnet-breakage-detection-app-338b0522930c.herokuapp.com/predict";
     const formData = new FormData();
     formData.append("file", base64Image); // Use base64Image directly
 
@@ -86,6 +87,10 @@ const VarroaResNet50 = () => {
         </div>
 
         <div className="order-2 mb-[48px]">
+          <ModelSelect onClick={ModelSelect} theme={theme} />
+        </div>
+
+        <div className="order-3 mb-[48px]">
           <InferenceButton onClick={sendImageToAPI} theme={theme} />
         </div>
 

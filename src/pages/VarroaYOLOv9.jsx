@@ -6,6 +6,7 @@ import InferenceButton from "../components/InferenceButton";
 import ImageDisplay from "../components/ImageDisplayYOLO";
 import axios from "axios";
 import Header from "../components/Header";
+import ModelSelect from "../components/ModelSelect";
 
 const VarroaYOLOv9 = () => {
   const [base64Image, setBase64Image] = useState(null);
@@ -72,6 +73,10 @@ const VarroaYOLOv9 = () => {
       <div className="flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6 mt-6">
         <div className="order-1 mb-[48px]">
           <UploadButton onChange={handleFileChange} theme={theme} />
+        </div>
+
+        <div className="order-2 mb-[48px]">
+          <ModelSelect onClick={ModelSelect} theme={theme} />
         </div>
 
         <div className="order-2 mb-[48px]">

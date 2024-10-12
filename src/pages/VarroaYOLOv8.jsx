@@ -6,6 +6,7 @@ import InferenceButton from "../components/InferenceButton";
 import ImageDisplay from "../components/ImageDisplayYOLO";
 import axios from "axios";
 import Header from "../components/Header";
+import ModelSelect from "../components/ModelSelect";
 
 const VarroaYOLOv8 = () => {
   const [base64Image, setBase64Image] = useState(null);
@@ -33,7 +34,7 @@ const VarroaYOLOv8 = () => {
       setIsInfering(true);
       axios({
         method: "POST",
-        url: "https://detect.roboflow.com/varroadetection_2/1", 
+        url: "https://detect.roboflow.com/varroa3kv2/1", 
         params: { 
           api_key: "fTWiDBcttFoP5JmC2p5u", 
           confidence: 0.10, },
@@ -78,6 +79,10 @@ const VarroaYOLOv8 = () => {
         </div>
 
         <div className="order-2 mb-[48px]">
+          <ModelSelect onClick={ModelSelect} theme={theme} />
+        </div>
+
+        <div className="order-2 mb-[48px]">
           <InferenceButton onClick={sendImageToAPI} theme={theme} />
         </div>
 
@@ -91,8 +96,8 @@ const VarroaYOLOv8 = () => {
               radioBtnValue="image"
               onDetection={(detectionOccurred) => {
                 if (!detectionOccurred) {
-                  setBboxData(null);  // Clear bounding box data
-                  setBase64Image(null);  // Clear image data as well
+                  setBboxData(null);  
+                  setBase64Image(null);  
                 }
               }}
               theme={theme}

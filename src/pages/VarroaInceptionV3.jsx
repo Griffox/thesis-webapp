@@ -5,6 +5,7 @@ import ImageDisplay from "../components/ImageDisplayOther";
 import UploadButton from "../components/UploadButton";
 import InferenceButton from "../components/InferenceButton";
 import Header from "../components/Header";
+import ModelSelect from "../components/ModelSelect";
 
 const VarroaInceptionV3 = () => {
   // State for base64 image
@@ -40,7 +41,7 @@ const VarroaInceptionV3 = () => {
 
   // Function to send image to API
   const sendImageToAPI = async () => {
-    const url = "";
+    const url = "https://cors-anywhere.herokuapp.com/https://incepv3-breakage-detection-app-41b2ba28caf8.herokuapp.com/predict";
     const formData = new FormData();
     formData.append("file", base64Image); 
 
@@ -61,7 +62,7 @@ const VarroaInceptionV3 = () => {
     }
   };
 
-  // Dummy function for onDetection, replace as needed
+  // Dummy function for onDetection
   const handleDetection = (value) => {
     console.log("Detection Occurred:", value);
   };
@@ -84,7 +85,11 @@ const VarroaInceptionV3 = () => {
           <UploadButton onChange={handleFileChange} theme={theme} />
         </div>
 
-        <div className="order-1 mb-[48px]">
+        <div className="order-2 mb-[48px]">
+          <ModelSelect onClick={ModelSelect} theme={theme} />
+        </div>
+
+        <div className="order-3 mb-[48px]">
           <InferenceButton onClick={sendImageToAPI} theme={theme} />
         </div>
 
